@@ -37,6 +37,16 @@ pipeline {
       }
     }
   }
+  post {
+    success { mail to: "darguechihela@gmail.com",
+                    subject: "Build sucess",
+                    body: "sucess"
+             echo 'successful'}
+    failure { mail to: "darguechihela@gmail.com",
+                    subject: "Build failed",
+                    body: "failed"
+             echo 'failed'}
+  }
 }
 
 
