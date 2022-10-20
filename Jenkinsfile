@@ -7,6 +7,7 @@ pipeline {
     
   }
   stages {
+    
     stage ('Check Tools Initializing') {
             steps {
                 sh 'java --version'
