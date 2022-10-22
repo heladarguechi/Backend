@@ -28,7 +28,8 @@ pipeline {
     stage ('Artifact construction') {
             steps {
                 sh 'echo "Artifact construction is processing ...."'
-                sh 'mvn  package' 
+                sh 'mvn -DskipTests package'
+              
             }
             
         }
@@ -42,7 +43,7 @@ pipeline {
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
-        sh 'docker build -t heladarguechi/appAchat .'
+        sh 'docker build -t heladarguechi/appachat .'
 
       }
     }
@@ -56,7 +57,7 @@ pipeline {
     stage('Docker push') {
       steps {
          sh 'echo "Docker push is processing ...."'
-        sh 'docker push heladarguechi/appAchat'
+        sh 'docker push heladarguechi/appachat'
 
       }
     }
