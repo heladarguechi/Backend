@@ -43,21 +43,21 @@ pipeline {
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
-        sh 'docker build -t heladarguechi/appachat .'
+        sh 'docker build -t heladarguechi/achat .'
 
       }
     }
      stage('Docker login') {
       steps {
          sh 'echo "Docker login is processing ...."'
-        sh 'docker login --username heladarguechi --password 98993295Azerty!'
+        sh 'docker login -u heladarguechi --password-stdin'
 
       }
     }
     stage('Docker push') {
       steps {
          sh 'echo "Docker push is processing ...."'
-        sh 'docker push heladarguechi/appachat'
+        sh 'docker push heladarguechi/achat'
 
       }
     }
