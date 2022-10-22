@@ -39,6 +39,27 @@ pipeline {
 
       }
     }
+    stage('Docker build image') {
+      steps {
+         sh 'echo "Docker build image is processing ...."'
+        sh 'docker build -t heladarguechi/appAchat .'
+
+      }
+    }
+     stage('Docker login') {
+      steps {
+         sh 'echo "Docker login is processing ...."'
+        sh 'docker login --username heladarguechi --password 98993295Azerty!'
+
+      }
+    }
+    stage('Docker push') {
+      steps {
+         sh 'echo "Docker push is processing ...."'
+        sh 'docker push heladarguechi/appAchat'
+
+      }
+    }
   }
   post {
     success { mail to: "darguechihela@gmail.com",
