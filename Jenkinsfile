@@ -50,7 +50,7 @@ pipeline {
      stage('Docker login') {
       steps {
          sh 'echo "Docker login is processing ...."'
-        sh 'docker login -u heladarguechi --password-stdin'
+        sh 'docker login --uesername heladarguechi --password 98993295Azerty!'
 
       }
     }
