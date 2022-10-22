@@ -1,4 +1,4 @@
-FROM imagenarium/jdk-maven:17
-ADD target/tpAchatProject-1.0.jar tpAchatProject-1.0.jar
-ENTRYPOINT ["java", "-jar","tpAchatProject-1.0.jar" ]
-
+FROM openjdk:8-jre-alpine
+ADD target/tpchatProject-1.0.jar tpAchatProject-1.0.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "spring-boot-docker.jar"]
