@@ -1,4 +1,4 @@
 FROM openjdk:8-jre-alpine
-ADD target/appAchat.jar appAchat.jar
+ADD target/appachat.jar appachat.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "appAchat.jar"]
+ENTRYPOINT ["java", "-jar", "appachat.jar"]
