@@ -89,7 +89,7 @@
     <version>3.1.0</version>
 </plugin>   
 		</plugins>
-		<finalName>appAchat</finalName>
+		<finalName>appachat</finalName>
 	</build>
 
 </project>
