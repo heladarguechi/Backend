@@ -43,7 +43,7 @@ pipeline {
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
-        sh 'docker build -t malakbensalem/imgachat'
+        sh 'docker build -t malakbensalem/achat'
 
       }
     }
@@ -57,7 +57,7 @@ pipeline {
     stage('Docker push') {
       steps {
          sh 'echo "Docker push is processing ...."'
-        sh 'docker push malakbensalem/imgachat'
+        sh 'docker push malakbensalem/achat'
 
       }
     }
