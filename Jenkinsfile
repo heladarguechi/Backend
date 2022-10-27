@@ -52,7 +52,7 @@ pipeline {
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
-        sh 'docker build -t heladarguechi/achat:latest .'
+        sh 'docker build -t heladarguechi/achat .'
 
       }
     }
