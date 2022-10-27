@@ -41,12 +41,12 @@ pipeline {
       }
     }
     stage('SonarQube analysis') {
-	steps {
-	    withSonarQubeEnv('SonarQube') {
-	    sh 'mvn clean -DskipTests package sonar:sonar'
-	   }
-       }
-    }
+		        steps {
+		        withSonarQubeEnv('SonarQube') {
+		        sh 'mvn clean -DskipTests package sonar:sonar'
+	                  }
+	                }
+	            }
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
