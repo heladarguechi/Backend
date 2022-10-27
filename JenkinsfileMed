@@ -1,0 +1,74 @@
+pipeline {
+  agent any
+  tools {
+     jdk 'JAVA_HOME'
+     maven 'M2_HOME'    
+  }
+  
+  stages {
+  
+    stage ('Check Tools Initializing') {
+            steps {
+                sh 'java --version'
+                sh 'mvn --version'
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+    stage('Cleaning the Project') {
+      steps {
+         sh 'echo "Clean the Project is processing ...."'
+        sh 'mvn clean'
+      }
+    }
+    
+    stage ('Artifact construction') {
+            steps {
+                sh 'echo "Artifact construction is processing ...."'
+                sh 'mvn -DskipTests package'
+              
+            }
+            
+        }
+    stage('Junit Testing') {
+      steps {
+         sh 'echo "Junit Test is processing ...."'
+        sh 'mvn  test'
+
+      }
+    }
+    stage('Docker build image') {
+      steps {
+         sh 'echo "Docker build image is processing ...."'
+        sh 'docker build -t amorrimohamed/achat .'
+
+      }
+    }
+     stage('Docker login') {
+      steps {
+         sh 'echo "Docker login is processing ...."'
+        sh 'docker login --username ${dockerhubusername} --password ${dockerhubpassword}'
+
+      }
+    }
+    stage('Docker push') {
+      steps {
+         sh 'echo "Docker push is processing ...."'
+        sh 'docker push ${dockerhubusername}/achat'
+
+      }
+    }
+  }
+  post {
+    success { mail to: "amorri.mohamed@esprit.tn",
+                    subject: "Build sucess",
+                    body: "sucess"
+             echo 'successful'}
+    failure { mail to: "amorri.mohamed@esprit.tn",
+                    subject: "Build failed",
+                    body: "failed"
+             echo 'failed'}
+  }
+}
