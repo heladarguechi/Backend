@@ -61,6 +61,15 @@ pipeline {
 
       }
     }
+    
+    stage('SonarQube analysis') {
+		        steps {
+		        withSonarQubeEnv(installationName: 'Sonarqube') {
+		        sh 'mvn clean -DskipTests package sonar:sonar'
+	                  }
+	                }
+	            }
+    
   }
   post {
     success { mail to: "darguechihela@gmail.com",
