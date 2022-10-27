@@ -68,6 +68,7 @@ pipeline {
 	                  }
 	                }
 	            }
+	}	    
   post {
     success { mail to: "darguechihela@gmail.com",
                     subject: "Build sucess",
