@@ -40,6 +40,15 @@ pipeline {
 
       }
     }
+	  
+     stage('SonarQube analysis') {
+		        steps {
+		        withSonarQubeEnv(installationName: 'Sonarqube') {
+		        sh 'mvn clean -DskipTests package sonar:sonar'
+	                  }
+	                }
+	            }
+	  
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
@@ -61,14 +70,6 @@ pipeline {
 
       }
     }
-    
-    stage('SonarQube analysis') {
-		        steps {
-		        withSonarQubeEnv(installationName: 'Sonarqube') {
-		        sh 'mvn clean -DskipTests package sonar:sonar'
-	                  }
-	                }
-	            }
     
   }
   post {
