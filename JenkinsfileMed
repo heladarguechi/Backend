@@ -16,7 +16,7 @@ pipeline {
                     echo "M2_HOME = ${M2_HOME}"
                 '''
             }
-        }
+    }
     stage('Cleaning the Project') {
       steps {
          sh 'echo "Clean the Project is processing ...."'
@@ -28,24 +28,23 @@ pipeline {
             steps {
                 sh 'echo "Artifact construction is processing ...."'
                 sh 'mvn -DskipTests package'
-              
             }
-            
         }
+        
     stage('Junit Testing') {
       steps {
          sh 'echo "Junit Test is processing ...."'
         sh 'mvn  test'
-
       }
     }
+/*
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
         sh 'docker build -t amorrimohamed/achat .'
-
       }
     }
+
      stage('Docker login') {
       steps {
          sh 'echo "Docker login is processing ...."'
@@ -59,11 +58,11 @@ pipeline {
         sh 'docker push ${dockerhubusername}/achat'
 
       }
-    }
+    }*/
     stage("SonarQube ") {
             steps {
               withSonarQubeEnv('SonarQube') {
-                sh 'mvn clean -DskipTests package sonar:sonar'
+                sh 'mvn clean -DskipTests package admin:sonar'
               }
             }
           }
