@@ -37,7 +37,18 @@ pipeline {
         sh 'mvn  test'
       }
     }
-
+    stage("SonarQube ") {
+            steps {
+              withSonarQubeEnv('SonarQube') {
+                sh 'mvn clean -DskipTests package sonar:sonar'
+              }
+            }
+    }
+     stage("NEXUS") {
+			steps {
+						sh 'mvn clean deploy -DskipTests'
+          }
+        }
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
@@ -59,18 +70,7 @@ pipeline {
 
       }
     }
-    stage("SonarQube ") {
-            steps {
-              withSonarQubeEnv('SonarQube') {
-                sh 'mvn clean -DskipTests package sonar:sonar'
-              }
-            }
-    }
-     stage("NEXUS") {
-			steps {
-						sh 'mvn clean deploy -DskipTests'
-      }
-    }
+
   }
   post {
     success { mail to: "amorri.mohamed@esprit.tn",
