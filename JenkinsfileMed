@@ -37,7 +37,7 @@ pipeline {
         sh 'mvn  test'
       }
     }
-/*
+
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
@@ -58,14 +58,14 @@ pipeline {
         sh 'docker push ${dockerhubusername}/achat'
 
       }
-    }*/
+    }
     stage("SonarQube ") {
             steps {
               withSonarQubeEnv('SonarQube') {
                 sh 'mvn clean -DskipTests package sonar:sonar'
               }
             }
-          }
+    }
      stage("NEXUS") {
 			steps {
 						sh 'mvn clean deploy -DskipTests'
