@@ -61,13 +61,15 @@ pipeline {
 
       }
     }
+    /*
     stage('Docker push') {
       steps {
          sh 'echo "Docker push is processing ...."'
         sh 'docker push malakbensalem/azert'
 
       }
-    }
+    } 
+    */
   }
   post {
     success { mail to: "darguechihela@gmail.com",
