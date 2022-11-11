@@ -63,13 +63,14 @@ pipeline {
 
       }
     }
-    stage('Docker push') {
+    /*stage('Docker push') {
       steps {
          sh 'echo "Docker push is processing ...."'
         sh 'docker push heladarguechi/achat:latest'
 
       }
     }
+    */
     
   }
   post {
