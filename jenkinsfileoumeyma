@@ -61,6 +61,7 @@ pipeline {
 
       }
     }
+    /*
     stage('Docker push') {
       steps {
          sh 'echo "Docker push is processing ...."'
@@ -68,6 +69,8 @@ pipeline {
 
       }
     }
+    */
+    
 }	    
   post {
     success { mail to: "darguechihela@gmail.com",
