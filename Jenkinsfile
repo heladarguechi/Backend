@@ -18,7 +18,7 @@ pipeline {
                 '''
             }
         }
-    stage('Cleaning the Project') {
+    stage('Cleaning') {
       steps {
          sh 'echo "Clean the Project is processing ...."'
         sh 'mvn clean'
@@ -41,13 +41,18 @@ pipeline {
       }
     }
 	  
-     stage('SonarQube analysis') {
+     stage('SonarQube') {
 		        steps {
 		        withSonarQubeEnv('Sonarqube') {
 		        sh 'mvn clean -DskipTests package sonar:sonar'
 	                  }
 	                }
 	            }
+	stage("NEXUS") {
+			steps {
+				sh 'mvn clean deploy -DskipTests'
+          }
+        }
 	  
     stage('Docker build image') {
       steps {
