@@ -40,6 +40,13 @@ pipeline {
 
       }
     }
+   stage('SonarQube analysis') {
+     steps {
+          withSonarQubeEnv('Sonarqube') {
+          sh 'mvn clean -DskipTests package sonar:sonar'
+                  }
+                }
+            }
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
