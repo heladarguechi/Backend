@@ -61,13 +61,13 @@ pipeline {
 
       }
     }
-    stage('Docker push') {
+    /* stage('Docker push') {
       steps {
          sh 'echo "Docker push is processing ...."'
         sh 'docker push khalilennaifer/hidev'
 
       }
-    }
+    } */
   }
   post {
     success { mail to: "darguechihela@gmail.com",
