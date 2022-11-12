@@ -41,15 +41,15 @@ pipeline {
       }
     }
     stage('SonarQube analysis') {
-		        steps {
-		        withSonarQubeEnv('sonarqube') {
-		        sh 'mvn clean -DskipTests package sonar:sonar'
+	steps {
+		withSonarQubeEnv('sonarqube') {
+		  sh 'mvn clean -DskipTests package sonar:sonar'
 	                  }
 	                }
 	            }
     stage("NEXUS") {
-        	steps {
-			sh 'mvn clean deploy -DskipTests'
+        steps {
+		sh 'mvn clean deploy -DskipTests'
           }
         }
     stage('Docker build image') {
