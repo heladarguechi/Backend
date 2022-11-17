@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mysql_db_1:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: tpachato
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+
+    ports:
+      - 3306:3306
+    expose:
+
+      - 3306
+
+  spring-back:
+    image: malakbensalem/azert:latest
+    container_name: AchatProject
+    ports:
+      - 8089:8089
+    depends_on:
+      - mysql
+    expose:
+      # Opens port 3306 on the container
+      - 8089
