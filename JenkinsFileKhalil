@@ -33,7 +33,7 @@ pipeline {
             }
             
         }
-    stage('Junit Testing') {
+    stage('Junit Test') {
       steps {
          sh 'echo "Junit Test is processing ...."'
         sh 'mvn  test'
