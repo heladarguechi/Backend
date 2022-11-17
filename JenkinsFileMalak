@@ -89,7 +89,7 @@ pipeline {
                     subject: "Build sucess",
                     body: "sucess"
              echo 'successful'}
-    failure { mail to: "darguechihela@gmail.com",
+    failure { mail to: "malak.bnsalem@gmail.com",
                     subject: "Build failed",
                     body: "failed"
              echo 'failed'}
