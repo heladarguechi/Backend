@@ -61,6 +61,7 @@ pipeline {
 
       }
     }
+	  
      stage('DOCKER login') {
       steps {
          sh 'echo "Docker login is processing ...."'
@@ -68,6 +69,7 @@ pipeline {
 
       }
     }
+	  
     /*stage('DOCKER push') {
       steps {
          sh 'echo "Docker push is processing ...."'
@@ -76,7 +78,13 @@ pipeline {
       }
     }
     */
-    
+	  
+    stage('DOCKER-COMPOSE') {
+      		steps {
+         		sh 'docker-compose up -d'
+      }
+    }
+	  
   }
   post {
     success { mail to: "darguechihela@gmail.com",
