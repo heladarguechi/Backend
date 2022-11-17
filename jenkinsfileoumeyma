@@ -53,6 +53,11 @@ pipeline {
 		sh 'mvn clean deploy -DskipTests'
           }
         }
+    stage('Docker compose') {
+            steps {
+                sh "docker-compose up -d";
+            }
+        }
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
