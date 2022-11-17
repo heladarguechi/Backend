@@ -33,20 +33,22 @@ pipeline {
             }
             
         }
-    stage('Junit Testing') {
-      steps {
-         sh 'echo "Junit Test is processing ...."'
-        sh 'mvn  test'
-
-      }
-    }
-    stage('SonarQube analysis') {
+    stage('Junit/Mockito') {
+            steps {
+                sh "mvn clean test -Ptest";
+            }
+    /*stage('SonarQube analysis') {
 	steps {
 		withSonarQubeEnv('sonarqube') {
 		  sh 'mvn clean -DskipTests package sonar:sonar'
 	                  }
 	                }
-	            }
+	            }*/
+    stage('Sonar') {
+            steps {
+                sh "mvn verify sonar:sonar -Dsonar.login=admin -Dsonar.password=203JFT1008";
+            }	    
+		    
     stage("NEXUS") {
         steps {
 		sh 'mvn clean deploy -DskipTests'
@@ -75,6 +77,10 @@ pipeline {
       }
     }
     */
+    stage('Docker compose') {
+            steps {
+                sh "docker-compose up -d";
+            }
     
 }	    
   post {
