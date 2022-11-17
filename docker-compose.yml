@@ -7,8 +7,8 @@ services:
     environment:
       MYSQL_DATABASE: tpachato
       MYSQL_USERNAME: root
-      MYSQL_PASSWORD: pass
-      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_PASSWORD: hela
+      MYSQL_ROOT_PASSWORD: hela
 
     ports:
       - 3306:3306
