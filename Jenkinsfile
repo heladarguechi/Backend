@@ -8,7 +8,7 @@ pipeline {
   }
   stages {
     
-    stage ('Check Tools Initializing') {
+    stage ('CHECK TOOLS') {
             steps {
                 sh 'java --version'
                 sh 'mvn --version'
@@ -18,14 +18,14 @@ pipeline {
                 '''
             }
         }
-    stage('Cleaning') {
+    stage('CLEANING') {
       steps {
-         sh 'echo "Clean the Project is processing ...."'
+         sh 'echo "Cleaning is processing ...."'
         sh 'mvn clean'
       }
     }
     
-    stage ('Artifact construction') {
+    stage ('ARTIFACT') {
             steps {
                 sh 'echo "Artifact construction is processing ...."'
                 sh 'mvn -DskipTests package'
@@ -33,7 +33,7 @@ pipeline {
             }
             
         }
-    stage('Junit Testing') {
+    stage('JUNIT TEST') {
       steps {
          sh 'echo "Junit Test is processing ...."'
         sh 'mvn  test'
@@ -41,7 +41,7 @@ pipeline {
       }
     }
 	  
-     stage('SonarQube') {
+     stage('SONARQUBE') {
 		        steps {
 		        withSonarQubeEnv('Sonarqube') {
 		        sh 'mvn clean -DskipTests package sonar:sonar'
@@ -54,21 +54,21 @@ pipeline {
           }
         }
 	  
-    stage('Docker build image') {
+    stage('DOCKER build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
         sh 'docker build -t heladarguechi/achat .'
 
       }
     }
-     stage('Docker login') {
+     stage('DOCKER login') {
       steps {
          sh 'echo "Docker login is processing ...."'
         sh 'docker login --username heladarguechi --password 98993295Azerty!'
 
       }
     }
-    /*stage('Docker push') {
+    /*stage('DOCKER push') {
       steps {
          sh 'echo "Docker push is processing ...."'
         sh 'docker push heladarguechi/achat:latest'
@@ -81,11 +81,11 @@ pipeline {
   post {
     success { mail to: "darguechihela@gmail.com",
                     subject: "Build sucess",
-                    body: "sucess"
+                    body: "sucess, Great work!"
              echo 'successful'}
     failure { mail to: "darguechihela@gmail.com",
                     subject: "Build failed",
-                    body: "failed"
+                    body: "failed, check your work!"
              echo 'failed'}
   }
 }
