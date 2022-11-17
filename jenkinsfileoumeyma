@@ -24,6 +24,11 @@ pipeline {
         sh 'mvn clean'
       }
     }
+    stage('Build') {
+            steps {
+                sh "mvn clean package -Pprod";
+            }
+	  }
     
     stage ('Artifact construction') {
             steps {
