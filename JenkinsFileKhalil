@@ -40,7 +40,7 @@ pipeline {
 
       }
     }
-   stage('SonarQube analysis') {
+   stage('MVN SonarQube') {
      steps {
           withSonarQubeEnv('Sonarqube') {
           sh 'mvn clean -DskipTests package sonar:sonar'
@@ -66,22 +66,22 @@ pipeline {
 
       }
     }
-    /* stage('Docker push') {
+    stage('Docker push') {
       steps {
          sh 'echo "Docker push is processing ...."'
         sh 'docker push khalilennaifer/hidev'
 
       }
-    } */
+    } 
   }
   post {
-    success { mail to: "darguechihela@gmail.com",
-                    subject: "Build sucess",
-                    body: "sucess"
+    success { mail to: "khalilennaifer99@gmail.com",
+                    subject: "Built Successfully",
+                    body: "Sucess"
              echo 'successful'}
-    failure { mail to: "darguechihela@gmail.com",
+    failure { mail to: "khalilennaifer99@gmail.com",
                     subject: "Build failed",
-                    body: "failed"
+                    body: "Failed"
              echo 'failed'}
   }
 }
