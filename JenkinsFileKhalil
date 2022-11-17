@@ -18,7 +18,7 @@ pipeline {
                 '''
             }
         }
-    stage('Cleaning the Project') {
+    stage('MVN Clean') {
       steps {
          sh 'echo "Clean the Project is processing ...."'
         sh 'mvn clean'
