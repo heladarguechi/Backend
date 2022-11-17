@@ -8,7 +8,7 @@ pipeline {
   }
   stages {
     
-    stage ('Check Tools Initializing') {
+    stage ('Look into Tools configuration') {
             steps {
                 sh 'java --version'
                 sh 'mvn --version'
@@ -19,31 +19,31 @@ pipeline {
             }
         }
 	
-    stage('Cleaning the Project') {
+    stage('Clean Project') {
       steps {
-         sh 'echo "Clean the Project is processing ...."'
+         sh 'echo "Clean is processing ...."'
         sh 'mvn clean'
       }
     }
     
-    stage ('Artifact construction') {
+    stage ('Building Artifacts') {
             steps {
-                sh 'echo "Artifact construction is processing ...."'
+                sh 'echo "Building Artifacts is running ...."'
                 sh 'mvn -DskipTests package'
               
             }
             
         }
 	
-    stage('Junit Testing') {
+    stage('Junit') {
       steps {
-         sh 'echo "Junit Test is processing ...."'
+         sh 'echo "Junit run...."'
         sh 'mvn  test'
 
       }
     }
     
-    stage('SonarQube analysis') {
+    stage('Testing SonarQube ') {
 		        steps {
 		        withSonarQubeEnv('SonarQube') {
 		        sh 'mvn clean -DskipTests package sonar:sonar'
@@ -59,7 +59,7 @@ pipeline {
 	
     stage('Docker build image') {
       steps {
-         sh 'echo "Docker build image is processing ...."'
+         sh 'echo "Docker build image running ...."'
          sh 'docker build -t malakbensalem/azert .'
 
       }
@@ -67,7 +67,7 @@ pipeline {
     
      stage('Docker login') {
       steps {
-         sh 'echo "Docker login is processing ...."'
+         sh 'echo "Docker login running...."'
         sh 'docker login --username malakbensalem --password 09885111Malak'
 
       }
@@ -76,7 +76,7 @@ pipeline {
     /*
     stage('Docker push') {
       steps {
-         sh 'echo "Docker push is processing ...."'
+         sh 'echo "Docker push running ...."'
         sh 'docker push malakbensalem/azert'
 
       }
@@ -85,7 +85,7 @@ pipeline {
   }
   
   post {
-    success { mail to: "darguechihela@gmail.com",
+    success { mail to: "malak.bnsalem@gmail.com",
                     subject: "Build sucess",
                     body: "sucess"
              echo 'successful'}
