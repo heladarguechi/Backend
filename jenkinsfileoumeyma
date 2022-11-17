@@ -24,11 +24,6 @@ pipeline {
         sh 'mvn clean'
       }
     }
-    stage('Build') {
-            steps {
-                sh "mvn clean package -Pprod";
-            }
-	  }
     
     stage ('Artifact construction') {
             steps {
@@ -38,21 +33,15 @@ pipeline {
             }
             
         }
-    stage('Junit/Mockito') {
-            steps {
-                sh "mvn clean test -Ptest";
-            }
-    /*stage('SonarQube analysis') {
+    
+    stage('SonarQube analysis') {
 	steps {
 		withSonarQubeEnv('sonarqube') {
 		  sh 'mvn clean -DskipTests package sonar:sonar'
 	                  }
 	                }
-	            }*/
-    stage('Sonar') {
-            steps {
-                sh "mvn verify sonar:sonar -Dsonar.login=admin -Dsonar.password=203JFT1008";
-            }	    
+	            }
+      
 		    
     stage("NEXUS") {
         steps {
@@ -82,11 +71,7 @@ pipeline {
       }
     }
     */
-    stage('Docker compose') {
-            steps {
-                sh "docker-compose up -d";
-            }
-    
+  
 }	    
   post {
     success { mail to: "oumeymatalbi235@gmail.com",
