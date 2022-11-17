@@ -77,7 +77,7 @@ pipeline {
       		steps {
          		sh 'docker-compose up -d'
       }
-}
+  }
   }
   post {
     success { mail to: "khalilennaifer99@gmail.com",
