@@ -72,16 +72,21 @@ pipeline {
 
       }
     }
-    
+    /*
     stage('Docker push') {
       steps {
          sh 'echo "Docker push running ...."'
         sh 'docker push malakbensalem/azert'
 
       }
-    } 
+    } */
   }
-  
+  stage('Docker Compose') {
+      steps {
+         sh 'echo "Docker Compose running ...."'
+         sh 'docker-compose up -d'
+      }
+  }
   post {
     success { mail to: "malak.bnsalem@gmail.com",
                     subject: "Build sucess",
