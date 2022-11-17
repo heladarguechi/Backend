@@ -4,7 +4,7 @@ services:
   mysql_db_1:
     image: mysql:5.7
     restart: always
-    container_name: mysql_db
+    container_name: mysql_db_1
     environment:
       MYSQL_DATABASE: tpachato
       MYSQL_USERNAME: root
@@ -25,7 +25,7 @@ services:
     ports:
       - 8089:8089
     depends_on:
-      - mysql_db
+      - mysql_db_1
     expose:
       # Opens port 3306 on the container
       - 8089
