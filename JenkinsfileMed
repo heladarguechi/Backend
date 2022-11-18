@@ -4,7 +4,9 @@ pipeline {
      jdk 'JAVA_HOME'
      maven 'M2_HOME'    
   }
-  
+  options {
+        	ansiColor('xterm')
+	}
   stages {
   
     stage ('Check Tools Initializing') {
@@ -19,14 +21,14 @@ pipeline {
     }
     stage('Cleaning the Project') {
       steps {
-         sh 'echo "Clean the Project is processing ...."'
+         sh 'echo "\033[34m*********Clean the Project is processing ....*********\033[0m"'
         sh 'mvn clean'
       }
     }
     
     stage ('Artifact construction') {
             steps {
-                sh 'echo "Artifact construction is processing ...."'
+                sh 'echo "\033[34m*********Artifact construction is processing ....*********\033[0m"'
                 sh 'mvn -DskipTests package'
             }
         }
@@ -41,14 +43,20 @@ pipeline {
             steps {
               withSonarQubeEnv('SonarQube') {
                 sh 'mvn clean -DskipTests package sonar:sonar'
+		echo "\033[42m\033[97m*********SonarQube analysis finished with SUCCESS *********\033[0m"
               }
             }
     }
+    
+    
      stage("NEXUS") {
 			steps {
-						sh 'mvn clean deploy -DskipTests'
+				sh 'mvn clean deploy -DskipTests'
+				echo "\033[42m\033[97m*********NEXUS deployement finished with SUCCESS *********\033[0m"
           }
         }
+	
+	
     stage('Docker build image') {
       steps {
          sh 'echo "Docker build image is processing ...."'
@@ -80,10 +88,10 @@ pipeline {
     success { mail to: "amorri.mohamed@esprit.tn",
                     subject: "Build sucess",
                     body: "sucess"
-             echo 'successful'}
+             echo '\033[42m\033[97m*********successful*********\033[0m'}
     failure { mail to: "amorri.mohamed@esprit.tn",
                     subject: "Build failed",
                     body: "failed"
-             echo 'failed'}
+             echo '\033[31m*********failed*********\033[0m'}
   }
 }
