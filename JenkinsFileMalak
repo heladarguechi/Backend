@@ -34,14 +34,7 @@ pipeline {
             }
             
         }
-	
-    stage('Junit') {
-      steps {
-         sh 'echo "Junit run...."'
-        sh 'mvn  test'
 
-      }
-    }
     
     stage('Testing SonarQube ') {
 		        steps {
@@ -86,6 +79,13 @@ pipeline {
          sh 'docker-compose up -d'
       }
   }
+  stage('Junit') {
+        steps {
+           sh 'echo "Junit run...."'
+          sh 'mvn  test'
+
+        }
+      }
   }
 
   post {
