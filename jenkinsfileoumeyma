@@ -83,14 +83,14 @@ pipeline {
     }
   
 }	    
-  post {
+post {
     success { mail to: "oumeymatalbi235@gmail.com",
                     subject: "Build sucess",
-                    body: "sucess, Great work!"
+                    body: "J ai bien recu votre mail"
              echo 'successful'}
-    failure { mail to: "oumeymatalbi@gmail.com",
+    failure { mail to: "oumeymatalbi235@gmail.com",
                     subject: "Build failed",
-                    body: "failed, check your work!"
+                    body: "failed"
              echo 'failed'}
   }
 }
