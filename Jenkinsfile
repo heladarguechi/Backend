@@ -70,14 +70,14 @@ pipeline {
       }
     }
 	  
-    /*stage('DOCKER push') {
+    stage('DOCKER push') {
       steps {
          sh 'echo "Docker push is processing ...."'
         sh 'docker push heladarguechi/achat:latest'
 
       }
     }
-    */
+
 	  
     stage('DOCKER-COMPOSE') {
       		steps {
