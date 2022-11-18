@@ -35,7 +35,7 @@ pipeline {
         
     stage('Junit Testing') {
       steps {
-         sh 'echo "Junit Test is processing ...."'
+         sh 'echo "033[34m*********Junit Test is processing .... *********\033[0m"'
         sh 'mvn  test'
       }
     }
@@ -59,21 +59,21 @@ pipeline {
 	
     stage('Docker build image') {
       steps {
-         sh 'echo "Docker build image is processing ...."'
+         sh 'echo "\033[34m*********Docker build image is processing ....*********\033[0m"'
         sh 'docker build -t amorrimohamed/achat .'
       }
     }
 
      stage('Docker login') {
       steps {
-         sh 'echo "Docker login is processing ...."'
+         sh 'echo "\033[34m*********Docker login is processing ....*********\033[0m"'
         sh 'docker login --username ${dockerhubusername} --password ${dockerhubpassword}'
 
       }
     }
     stage('Docker push') {
       steps {
-         sh 'echo "Docker push is processing ...."'
+         sh 'echo "\033[34m*********Docker push is processing ....*********\033[0m"'
         sh 'docker push ${dockerhubusername}/achat'
 
       }
@@ -81,6 +81,7 @@ pipeline {
     stage('Running Back') {
       		steps {
          		sh 'docker-compose up -d'
+			echo "\033[42m\033[97m*********Apllication Is Started *********\033[0m"
       }
 }
   }
