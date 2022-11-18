@@ -33,6 +33,7 @@ pipeline {
             }
             
         }
+	/*
 	stage('Junit/Mockito') {
             steps {
                 sh "mvn clean test -Ptest";
@@ -52,7 +53,7 @@ pipeline {
         steps {
 		sh 'mvn clean deploy -DskipTests'
           }
-        }
+        }*/
     stage('Docker compose') {
             steps {
                 sh 'docker-compose up -d';
