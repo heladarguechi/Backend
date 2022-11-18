@@ -6,6 +6,7 @@ pipeline {
      maven 'M2_HOME'
     
   }
+
   stages {
     
     stage ('Check Tools Initializing') {
