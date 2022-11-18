@@ -18,7 +18,7 @@ pipeline {
                 '''
             }
         }
-    stage('Cleaning the Project') {
+    stage('Clean') {
       steps {
          sh 'echo "Clean the Project is processing ...."'
         sh 'mvn clean'
@@ -40,7 +40,7 @@ pipeline {
             }
         }
     
-    stage('SonarQube analysis') {
+    stage('SonarQube') {
 	steps {
 		withSonarQubeEnv('sonarqube') {
 		  sh 'mvn clean -DskipTests package sonar:sonar'
@@ -59,7 +59,7 @@ pipeline {
                 sh 'docker-compose up -d';
             }
         }
-    stage('Docker build image') {
+    stage('Docker build IMG') {
       steps {
          sh 'echo "Docker build image is processing ...."'
         sh 'docker build -t oumeymatalbi/achat .'
@@ -74,7 +74,7 @@ pipeline {
       }
     }
     
-    stage('Docker push') {
+    stage('Docker PUSH') {
       steps {
          sh 'echo "Docker push is processing ...."'
         sh 'docker push oumeymatalbi/achat'
