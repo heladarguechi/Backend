@@ -52,7 +52,7 @@ pipeline {
         }
 	
 	
-    stage('Docker build image') {
+    stage('Docker build ') {
       steps {
          sh 'echo "\033[34m*********Docker build image is processing ....*********\033[0m"'
         sh 'docker build -t amorrimohamed/achat .'
@@ -73,13 +73,13 @@ pipeline {
 
       }
     }
-    stage('DockerCompose') {
+    stage('Docker Compose') {
       		steps {
          		sh 'docker-compose up -d'
 			echo "\033[42m\033[97m*********Apllication Is Started *********\033[0m"
       }
     }
-    stage('Junit / Mockito Testing') {
+    stage('Junit/Mockito Testing') {
       steps {
          sh 'echo "033[34m*********Junit / Mockito Test is processing .... *********\033[0m"'
         sh 'mvn  test'
