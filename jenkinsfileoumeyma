@@ -84,11 +84,11 @@ pipeline {
   
 }	    
 post {
-    success { mail to: "oumeymatalbi235@gmail.com",
+    success { mail to: "darguechihela@gmail.com",
                     subject: "Build sucess",
                     body: "J ai bien recu votre mail"
              echo 'successful'}
-    failure { mail to: "oumeymatalbi235@gmail.com",
+    failure { mail to: "darguechihela@gmail.com",
                     subject: "Build failed",
                     body: "failed"
              echo 'failed'}
